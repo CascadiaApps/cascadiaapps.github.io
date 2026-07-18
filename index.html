@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cascadia Apps — Independent Mobile Software</title>
+  <meta name="description" content="Cascadia Apps LLC builds ecology-first mobile apps for iOS. Based in Tillamook, Oregon." />
+  <meta name="author" content="Cascadia Apps LLC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --midnight:       #12202f;
+      --cascade:        #1e4a7a;
+      --cascade-light:  #2d6a9f;
+      --forest:         #2d6a4f;
+      --mist:           #edf2f7;
+      --salt:           #f8fafc;
+      --text-primary:   #1a2332;
+      --text-secondary: #4a5568;
+      --text-muted:     #718096;
+      --text-hero:      #8fa8c0;
+      --text-light:     #c8d8e8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 300;
+      color: var(--text-primary);
+      background: var(--salt);
+      line-height: 1.7;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    nav.scrolled {
+      background: var(--midnight);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .nav-contact {
+      font-size: 0.74rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-contact:hover { color: #fff; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--midnight);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 65%, rgba(30,74,122,0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 35% at 25% 85%, rgba(45,106,79,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-mark {
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cascade-light);
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--text-light);
+    }
+    .hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-hero);
+      max-width: 46ch;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-rule {
+      width: 44px;
+      height: 1px;
+      background: var(--cascade-light);
+      margin: 2.5rem auto 0;
+      opacity: 0.45;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #3a5568;
+    }
+
+    /* ─── SECTION SHARED ──────────────────────────────────── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────────── */
+    .about {
+      padding: 7rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .about h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 1.75rem;
+    }
+    .about p {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      max-width: 60ch;
+    }
+    .about p + p { margin-top: 1rem; }
+
+    /* ─── APPS ────────────────────────────────────────────── */
+    .apps {
+      background: var(--mist);
+      padding: 7rem 2rem;
+    }
+    .apps-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .apps-header { margin-bottom: 3rem; }
+    .apps-header h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 300;
+      color: var(--text-primary);
+    }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      gap: 1.5rem;
+    }
+    .app-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 4px 18px rgba(0,0,0,0.04);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .app-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 10px 28px rgba(0,0,0,0.07);
+    }
+    .app-card.featured { border-top: 3px solid var(--forest); }
+    .app-icon {
+      font-size: 2.25rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .app-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      border-radius: 20px;
+      margin-bottom: 0.85rem;
+    }
+    .badge-soon   { background: #fef3c7; color: #92400e; }
+    .badge-dev    { background: #e0f2fe; color: #0369a1; }
+    .app-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+    .app-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────────────── */
+    .contact {
+      padding: 7rem 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    .contact p {
+      color: var(--text-muted);
+      margin-bottom: 2.25rem;
+      font-size: 0.95rem;
+    }
+    .contact-link {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--cascade);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(30,74,122,0.35);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-link:hover {
+      color: var(--forest);
+      border-color: var(--forest);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--midnight);
+      color: #3a5568;
+      padding: 2.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+    footer span { color: #1e3348; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav            { padding: 1rem 1.5rem; }
+      .about,
+      .contact       { padding: 5rem 1.5rem; }
+      .apps          { padding: 5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="#" class="nav-logo">
+      <!-- Mountain mark: Cascade Range silhouette -->
+      <svg width="36" height="20" viewBox="0 0 160 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0 70 L28 18 L52 40 L80 0 L108 32 L130 12 L160 70Z" fill="#2d6a9f"/>
+      </svg>
+      <span class="nav-wordmark">Cascadia Apps</span>
+    </a>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- Large mountain mark -->
+    <div class="hero-mark">
+      <svg width="148" height="76" viewBox="0 0 160 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cascadia Apps mountain mark">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="160" y2="70" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#2d8a70"/>
+            <stop offset="100%" stop-color="#1e4a7a"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 70 L28 18 L52 40 L80 0 L108 32 L130 12 L160 70Z" fill="url(#g1)"/>
+      </svg>
+    </div>
+
+    <p class="hero-eyebrow">Cascadia Apps LLC &nbsp;·&nbsp; Tillamook, Oregon</p>
+    <h1 class="hero-title">
+      Independent apps.<br>
+      <em>Pacific Northwest roots.</em>
+    </h1>
+    <p class="hero-tagline">
+      We build mobile software that pays attention to the natural world — using real scientific data, live environmental APIs, and a genuine ecological perspective.
+    </p>
+    <div class="hero-rule"></div>
+    <p class="hero-scroll">Scroll to explore</p>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <p class="section-label">Who we are</p>
+    <h2>A small studio building apps that take the natural world seriously.</h2>
+    <p>Cascadia Apps is an independent software company based in Tillamook, Oregon, founded by Jed Werner. We build iOS apps that combine rigorous scientific data with thoughtful design — software that treats ecological intelligence as a feature, not an afterthought.</p>
+    <p>Our work spans gardening, coastal recreation, and location-based discovery. Every app we ship is grounded in real data sources — USDA soil surveys, marine forecasting models, and live environmental APIs — because we believe the best software reflects how the world actually works.</p>
+  </section>
+
+  <!-- APPS -->
+  <section class="apps" id="apps">
+    <div class="apps-inner">
+      <div class="apps-header">
+        <p class="section-label">Our apps</p>
+        <h2>Software for people who pay attention.</h2>
+      </div>
+      <div class="apps-grid">
+
+        <div class="app-card featured">
+          <span class="app-icon">🌿</span>
+          <span class="app-badge badge-soon">Coming Soon</span>
+          <div class="app-name">Garden Tender</div>
+          <p class="app-desc">An ecology-first plant care app for iOS. Garden Tender combines live USDA soil data, real-time weather intelligence, and AI-powered plant identification to help homeowners build beautiful, sustainable landscapes.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="app-icon">🌊</span>
+          <span class="app-badge badge-dev">In Development</span>
+          <div class="app-name">Oregon Surf</div>
+          <p class="app-desc">Real-time surf forecasting and spot intelligence for Oregon's Pacific coast. Built by surfers who know the difference between a good forecast and a great one.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="app-icon">📍</span>
+          <span class="app-badge badge-dev">In Development</span>
+          <div class="app-name">GeoFind</div>
+          <p class="app-desc">A location-based discovery app that helps you find and explore meaningful places — from geological formations to hidden natural landmarks across the Pacific Northwest.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <p class="section-label">Get in touch</p>
+    <h2>Let's talk.</h2>
+    <p>Questions, partnerships, press inquiries, or just to say hello.</p>
+    <a href="mailto:hello@cascadiaapps.com" class="contact-link">hello@cascadiaapps.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Cascadia Apps LLC &nbsp;<span>·</span>&nbsp; Tillamook, Oregon &nbsp;<span>·</span>&nbsp; Oregon Registry #259471192</p>
+  </footer>
+
+  <!-- Nav scroll effect -->
+  <script>
+    const nav = document.getElementById('main-nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+
+</body>
+</html>
