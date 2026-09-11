@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garden Tender — Ecology-First Plant Care by Cascadia Apps</title>
+  <meta name="description" content="Garden Tender is an ecology-first plant care app for iOS — a plant catalog, maintenance calendar, weather-aware reminders, soil intelligence, and AI-powered plant and pest identification. By Cascadia Apps LLC, Tillamook, Oregon." />
+  <meta name="author" content="Cascadia Apps LLC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:     #1b4332;
+      --green-mid:      #2d5940;
+      --green-accent:   #52b788;
+      --midnight:       #12202f;
+      --mist:           #edf2f7;
+      --salt:           #f8fafc;
+      --text-primary:   #1a2332;
+      --text-secondary: #4a5568;
+      --text-muted:     #718096;
+      --text-hero:      #b7d9c7;
+      --text-light:     #c8d8e8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 300;
+      color: var(--text-primary);
+      background: var(--salt);
+      line-height: 1.7;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    nav.scrolled {
+      background: var(--midnight);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .nav-wordmark span {
+      color: var(--text-hero);
+      font-weight: 300;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-link {
+      font-size: 0.74rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 92vh;
+      background: var(--midnight);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 65%, rgba(82,183,136,0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 35% at 25% 85%, rgba(27,67,50,0.28) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-mark {
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--text-hero);
+    }
+    .hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-hero);
+      max-width: 50ch;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #92400e;
+      background: #fef3c7;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-rule {
+      width: 44px;
+      height: 1px;
+      background: var(--green-accent);
+      margin: 2.5rem auto 0;
+      opacity: 0.45;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── SECTION SHARED ──────────────────────────────────── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── ABOUT / PHILOSOPHY ──────────────────────────────── */
+    .about {
+      padding: 7rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .about h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 1.75rem;
+    }
+    .about p {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      max-width: 60ch;
+    }
+    .about p + p { margin-top: 1rem; }
+
+    /* ─── FEATURES ────────────────────────────────────────── */
+    .features {
+      background: var(--mist);
+      padding: 7rem 2rem;
+    }
+    .features-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .features-header { margin-bottom: 3rem; }
+    .features-header h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 300;
+      color: var(--text-primary);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 4px 18px rgba(0,0,0,0.04);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 10px 28px rgba(0,0,0,0.07);
+    }
+    .feature-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .feature-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ─── PHILOSOPHY BAND ─────────────────────────────────── */
+    .philosophy {
+      background: var(--green-dark);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .philosophy-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .philosophy .section-label { color: var(--green-accent); }
+    .philosophy h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+    .philosophy p {
+      color: var(--text-hero);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    /* ─── LEGAL LINKS ─────────────────────────────────────── */
+    .legal {
+      padding: 5rem 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .legal h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .legal-link {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--green-mid);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45,89,64,0.35);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .legal-link:hover {
+      color: var(--green-dark);
+      border-color: var(--green-dark);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--midnight);
+      color: #3a5568;
+      padding: 2.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+    footer span { color: #1e3348; }
+    footer a {
+      color: #6b8299;
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--text-light); }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav            { padding: 1rem 1.5rem; }
+      .about,
+      .legal         { padding: 5rem 1.5rem; }
+      .features,
+      .philosophy    { padding: 5rem 1.5rem; }
+      .legal-links   { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="../index.html" class="nav-logo">
+      <svg width="30" height="17" viewBox="0 0 160 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0 70 L28 18 L52 40 L80 0 L108 32 L130 12 L160 70Z" fill="#52b788"/>
+      </svg>
+      <span class="nav-wordmark">Garden Tender <span>· Cascadia Apps</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="terms.html" class="nav-link">Terms</a>
+      <a href="privacy.html" class="nav-link">Privacy</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-mark" aria-hidden="true">🌿</div>
+    <p class="hero-eyebrow">Garden Tender &nbsp;·&nbsp; by Cascadia Apps LLC</p>
+    <h1 class="hero-title">
+      Plant care, guided<br>
+      <em>by real science.</em>
+    </h1>
+    <p class="hero-tagline">
+      An ecology-first plant care app for iOS — your catalog, your calendar, and your soil, backed by live data instead of guesswork.
+    </p>
+    <span class="hero-badge">Coming Soon</span>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <p class="section-label">What it is</p>
+    <h2>A garden app built on real data, not generic reminders.</h2>
+    <p>Garden Tender helps you keep track of every plant on your property and gives you the information you need to keep it thriving — grounded in your actual soil, your actual climate, and your actual weather, not a one-size-fits-all watering schedule.</p>
+    <p>Build a living catalog of your plants, follow a maintenance calendar that adjusts to the forecast, and pull soil composition and hardiness data straight from USDA surveys for the ground you're actually gardening in.</p>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-inner">
+      <div class="features-header">
+        <p class="section-label">What's inside</p>
+        <h2>Everything a garden needs, in one place.</h2>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <span class="feature-icon">🪴</span>
+          <div class="feature-name">Plant Catalog</div>
+          <p class="feature-desc">Track every plant on your property — species, location, and care history — in one organized, searchable catalog.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">📅</span>
+          <div class="feature-name">Maintenance Calendar</div>
+          <p class="feature-desc">Watering, pruning, fertilizing, and pest checks scheduled around what your plants actually need, when they need it.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">⛅</span>
+          <div class="feature-name">Weather-Aware Reminders</div>
+          <p class="feature-desc">Live forecasts shift your reminders automatically — skip the watering after a rainstorm, get ahead of a frost warning.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🌱</span>
+          <div class="feature-name">Soil Intelligence</div>
+          <p class="feature-desc">Real USDA soil survey data for your property's exact location, translated into plain-language planting guidance.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🔍</span>
+          <div class="feature-name">AI Plant &amp; Pest ID</div>
+          <p class="feature-desc">Snap a photo to identify plants, pests, and diseases, and get AI-powered care and treatment advice tailored to what's found.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="philosophy-inner">
+      <p class="section-label">Our philosophy</p>
+      <h2>Gardens are ecosystems, not decorations.</h2>
+      <p>Garden Tender is built around ecological sustainability — favoring native and climate-appropriate plants, minimizing unnecessary chemical use, and treating soil health and water conservation as first-class parts of good garden care. Recommendations lean toward what's genuinely good for your land, your local wildlife, and the watershed it sits in — not just what looks tidy.</p>
+    </div>
+  </section>
+
+  <!-- LEGAL -->
+  <section class="legal" id="legal">
+    <h2>Terms &amp; Privacy</h2>
+    <div class="legal-links">
+      <a href="terms.html" class="legal-link">Terms and Conditions</a>
+      <a href="privacy.html" class="legal-link">Privacy Policy</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Cascadia Apps LLC &nbsp;<span>·</span>&nbsp; Tillamook, Oregon &nbsp;<span>·</span>&nbsp; <a href="../index.html">cascadiaapps.com</a></p>
+  </footer>
+
+  <!-- Nav scroll effect -->
+  <script>
+    const nav = document.getElementById('main-nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+
+</body>
+</html>
