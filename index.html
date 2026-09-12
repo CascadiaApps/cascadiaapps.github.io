@@ -225,10 +225,11 @@
     }
     .app-card.featured { border-top: 3px solid var(--forest); }
     .app-icon {
-      font-size: 2.25rem;
       display: block;
       margin-bottom: 1rem;
     }
+    .app-icon-emoji { font-size: 2.25rem; }
+    .app-icon-img { height: 40px; width: auto; }
     .app-badge {
       display: inline-block;
       font-size: 0.62rem;
@@ -369,21 +370,21 @@
       <div class="apps-grid">
 
         <a href="garden-tender/index.html" class="app-card featured">
-          <span class="app-icon">🌿</span>
+          <img src="garden-tender/images/leaf-title-icon-v2.png" alt="" class="app-icon app-icon-img">
           <span class="app-badge badge-soon">Coming Soon</span>
           <div class="app-name">Garden Tender</div>
           <p class="app-desc">An ecology-first plant care app for iOS. Garden Tender combines live USDA soil data, real-time weather intelligence, and AI-powered plant identification to help homeowners build beautiful, sustainable landscapes.</p>
         </a>
 
         <a href="resonant-swell/index.html" class="app-card">
-          <span class="app-icon">🌊</span>
+          <img src="resonant-swell/images/favicon.png" alt="" class="app-icon app-icon-img">
           <span class="app-badge badge-dev">In Development</span>
           <div class="app-name">Resonant Swell</div>
           <p class="app-desc">A geological surf forecasting model built specifically for the Pacific Northwest coast — headland shadows, sandbars, and wind shelter, calibrated against what actually happens at the buoys.</p>
         </a>
 
         <div class="app-card">
-          <span class="app-icon">📍</span>
+          <span class="app-icon app-icon-emoji">📍</span>
           <span class="app-badge badge-dev">In Development</span>
           <div class="app-name">GeoFind</div>
           <p class="app-desc">A location-based discovery app that helps you find and explore meaningful places — from geological formations to hidden natural landmarks across the Pacific Northwest.</p>

@@ -6,6 +6,7 @@
   <title>Garden Tender — Ecology-First Plant Care by Cascadia Apps</title>
   <meta name="description" content="Garden Tender is an ecology-first plant care app for iOS — a plant catalog, maintenance calendar, weather-aware reminders, soil intelligence, and AI-powered plant and pest identification. By Cascadia Apps LLC, Tillamook, Oregon." />
   <meta name="author" content="Cascadia Apps LLC" />
+  <link rel="icon" href="images/leaf-title-icon-v2.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -107,10 +108,13 @@
       pointer-events: none;
     }
     .hero-mark {
-      font-size: 3.5rem;
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
+    }
+    .hero-mark img {
+      height: 220px;
+      width: auto;
     }
     .hero-eyebrow {
       font-size: 0.7rem;
@@ -235,8 +239,9 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 10px 28px rgba(0,0,0,0.07);
     }
     .feature-icon {
-      font-size: 2rem;
       display: block;
+      height: 44px;
+      width: auto;
       margin-bottom: 1rem;
     }
     .feature-name {
@@ -263,6 +268,12 @@
       margin: 0 auto;
     }
     .philosophy .section-label { color: var(--green-accent); }
+    .philosophy-icon {
+      height: 56px;
+      width: auto;
+      margin: 0 auto 1.25rem;
+      display: block;
+    }
     .philosophy h2 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
@@ -357,7 +368,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-mark" aria-hidden="true">🌿</div>
+    <div class="hero-mark"><img src="images/logo-banner-v3.png" alt="Garden Tender"></div>
     <p class="hero-eyebrow">Garden Tender &nbsp;·&nbsp; by Cascadia Apps LLC</p>
     <h1 class="hero-title">
       Plant care, guided<br>
@@ -388,31 +399,31 @@
       <div class="features-grid">
 
         <div class="feature-card">
-          <span class="feature-icon">🪴</span>
+          <img src="images/LandscapeIcon.png" alt="" class="feature-icon">
           <div class="feature-name">Plant Catalog</div>
           <p class="feature-desc">Track every plant on your property — species, location, and care history — in one organized, searchable catalog.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">📅</span>
+          <img src="images/FertilizeIcon.png" alt="" class="feature-icon">
           <div class="feature-name">Maintenance Calendar</div>
           <p class="feature-desc">Watering, pruning, fertilizing, and pest checks scheduled around what your plants actually need, when they need it.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">⛅</span>
+          <img src="images/WeatherIcon.png" alt="" class="feature-icon">
           <div class="feature-name">Weather-Aware Reminders</div>
           <p class="feature-desc">Live forecasts shift your reminders automatically — skip the watering after a rainstorm, get ahead of a frost warning.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">🌱</span>
+          <img src="images/MapIcon.png" alt="" class="feature-icon">
           <div class="feature-name">Soil Intelligence</div>
           <p class="feature-desc">Real USDA soil survey data for your property's exact location, translated into plain-language planting guidance.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">🔍</span>
+          <img src="images/SearchIcon.png" alt="" class="feature-icon">
           <div class="feature-name">AI Plant &amp; Pest ID</div>
           <p class="feature-desc">Snap a photo to identify plants, pests, and diseases, and get AI-powered care and treatment advice tailored to what's found.</p>
         </div>
@@ -424,6 +435,7 @@
   <!-- PHILOSOPHY -->
   <section class="philosophy">
     <div class="philosophy-inner">
+      <img src="images/BeeIcon.png" alt="" class="philosophy-icon">
       <p class="section-label">Our philosophy</p>
       <h2>Gardens are ecosystems, not decorations.</h2>
       <p>Garden Tender is built around ecological sustainability — favoring native and climate-appropriate plants, minimizing unnecessary chemical use, and treating soil health and water conservation as first-class parts of good garden care. Recommendations lean toward what's genuinely good for your land, your local wildlife, and the watershed it sits in — not just what looks tidy.</p>

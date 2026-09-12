@@ -6,6 +6,7 @@
   <title>Resonant Swell — Surf Forecasting for the Pacific Northwest</title>
   <meta name="description" content="Resonant Swell is a surf forecasting app built specifically for the Pacific Northwest coast — a geological model with headland shadow mapping, wind shelter analysis, and tide calibration, verified against real buoy data. By Cascadia Apps LLC, Tillamook, Oregon." />
   <meta name="author" content="Cascadia Apps LLC" />
+  <link rel="icon" href="images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -107,10 +108,13 @@
       pointer-events: none;
     }
     .hero-mark {
-      font-size: 3.5rem;
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
+    }
+    .hero-mark img {
+      height: 360px;
+      width: auto;
     }
     .hero-eyebrow {
       font-size: 0.7rem;
@@ -245,8 +249,9 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 10px 28px rgba(0,0,0,0.07);
     }
     .feature-icon {
-      font-size: 2rem;
       display: block;
+      height: 44px;
+      width: auto;
       margin-bottom: 1rem;
     }
     .feature-name {
@@ -368,7 +373,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-mark" aria-hidden="true">🌊</div>
+    <div class="hero-mark"><img src="images/resonant-swell-banner-logo-v2-cropped.png" alt="Resonant Swell"></div>
     <p class="hero-eyebrow">Resonant Swell &nbsp;·&nbsp; by Cascadia Apps LLC</p>
     <h1 class="hero-title">
       Surf forecasts built<br>
@@ -400,31 +405,26 @@
       <div class="features-grid">
 
         <div class="feature-card">
-          <span class="feature-icon">🗻</span>
           <div class="feature-name">Headland Shadow Mapping</div>
           <p class="feature-desc">Accounts for how headlands block, bend, and shelter incoming swell at each individual break — not just the open-ocean forecast.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">💨</span>
           <div class="feature-name">Localized Wind Shelter</div>
           <p class="feature-desc">Wind quality varies break to break. The model accounts for local shelter, not just a regional wind forecast.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">🌊</span>
           <div class="feature-name">Bathymetry-Informed Shoaling</div>
           <p class="feature-desc">Sandbars and seafloor shape change how swell breaks. Wave shoaling is modeled against real bathymetry, not assumed.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">🕐</span>
           <div class="feature-name">Per-Break Tide Calibration</div>
           <p class="feature-desc">Tide behavior is calibrated to each specific spot, since the same tide stage can mean very different conditions two breaks apart.</p>
         </div>
 
         <div class="feature-card">
-          <span class="feature-icon">📡</span>
           <div class="feature-name">Verified Against Real Buoys</div>
           <p class="feature-desc">Predictions are checked against NOAA NDBC buoy and CO-OPS tide data after the fact, and the model is calibrated against what actually happened.</p>
         </div>
