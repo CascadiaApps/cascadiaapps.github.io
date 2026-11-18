@@ -94,7 +94,7 @@
 
 <main>
   <div class="card">
-    <div class="meta">Effective Date: September 2, 2026 &nbsp;·&nbsp; Last Updated: November 17, 2026</div>
+    <div class="meta">Effective Date: September 2, 2026 &nbsp;·&nbsp; Last Updated: November 18, 2026</div>
 
     <p class="intro">Cascadia Apps LLC ("Cascadia Apps," "we," "us," or "our") operates the Garden Tender mobile application ("App"). This Privacy Policy explains what information we collect, how we use it, who we share it with, and the choices you have. By using Garden Tender, you agree to the practices described here. If you do not agree, please do not use the App.</p>
 
@@ -108,6 +108,7 @@
     <h3>1.2 Information Collected Automatically</h3>
     <ul>
       <li><strong>Device and diagnostic information</strong> — device model, operating system version, app version, and similar technical data.</li>
+      <li><strong>Anonymous identifiers</strong> — a random user ID created for each installation of the App, which our backend uses to accept the App's requests and to count daily feature use for usage limits, and a random installation ID used by our crash reporter. Neither includes your name, email address, or other contact information.</li>
       <li><strong>Approximate or precise location</strong> — only if you grant location permission.</li>
       <li><strong>Purchase and subscription data</strong> — if you subscribe to Garden Tender Plus, purchase history and entitlement status are processed via your app store (Apple App Store or Google Play) and RevenueCat (see Section 3).</li>
       <li><strong>Local usage data</strong> — your plant catalog, calendar tasks, and cached care information are stored locally on your device, and are not automatically uploaded to us unless a feature specifically requires it.</li>
@@ -119,7 +120,7 @@
     <p>We use the information above to:</p>
     <ul>
       <li>Provide core App features (plant catalog, calendar, identification, soil and weather intelligence);</li>
-      <li>Generate AI-powered care instructions and recommendations, tailored to your plant, location, soil, and weather data;</li>
+      <li>Generate AI-powered care instructions and recommendations, tailored to your plant, location, and soil data;</li>
       <li>Cache AI-generated results (in our Supabase backend) so repeat requests for the same plant/zone don't require a new AI call;</li>
       <li>Process your subscription purchase and verify your entitlement to paid features;</li>
       <li>Diagnose bugs, improve the App, and understand why users cancel (via optional cancellation survey responses);</li>
@@ -137,16 +138,16 @@
         <tr><td>PlantNet</td><td>Photos submitted for plant ID; related reference images shown are CC BY-SA / CC BY licensed and attributed to their contributor.</td><td>Plant species identification</td></tr>
         <tr><td>Kindwise (Plant.id / Insect.id)</td><td>Photos submitted for insect and plant-variety ID.</td><td>Pest, beneficial-insect, and cultivar identification</td></tr>
         <tr><td>Trefle</td><td>Plant species names.</td><td>Botanical/taxonomic data lookup</td></tr>
-        <tr><td>OpenWeatherMap</td><td>Approximate location/coordinates.</td><td>Weather forecasts and alerts (attributed in-app)</td></tr>
+        <tr><td>OpenWeatherMap</td><td>Precise coordinates (latitude and longitude) of your current location or your saved home location, sent through our server.</td><td>Weather forecasts and alerts (attributed in-app)</td></tr>
         <tr><td>USDA Soil Data Access</td><td>Map coordinates only: the lot outline you draw, the spot you pin for a plant, or a small area around your property's location. No address is sent.</td><td>Soil survey data (U.S. government public data)</td></tr>
         <tr><td>Google (Google Maps SDK for Android)</td><td>The map area being displayed (the approximate location of your property), so map imagery can load. Use of this feature is also governed by Google's own Terms of Service and Privacy Policy.</td><td>Map display on Android devices</td></tr>
         <tr><td>Apple (Apple Maps / MapKit)</td><td>The map area being displayed (the approximate location of your property), so map imagery can load, on Apple devices.</td><td>Map display on iOS devices</td></tr>
         <tr><td>OpenStreetMap / Nominatim</td><td>Address text you enter (for your home location and for property and soil lookup), and your device's GPS coordinates when you use automatic location detection.</td><td>Geocoding (converting addresses to map coordinates, and coordinates to city, state, and ZIP code)</td></tr>
         <tr><td>phzmapi.org (Plant Hardiness Zone lookup)</td><td>The ZIP code of your home location, taken from the address you enter or your device's location.</td><td>Determining your local hardiness zone for plant recommendations</td></tr>
-        <tr><td>Anthropic (Claude API)</td><td>Plant name, location, soil, and weather context you've provided.</td><td>Generating AI care, native-plant, and pest-control content</td></tr>
-        <tr><td>Supabase</td><td>Cached AI-generated content, keyed by plant/zone rather than personal identity; acts as our data processor.</td><td>Backend hosting and caching to reduce redundant AI calls</td></tr>
+        <tr><td>Anthropic (Claude API)</td><td>Plant, pest, and insect names; your general location (hardiness zone, state, and city); and soil details you've provided.</td><td>Generating AI care, native-plant, and pest-control content</td></tr>
+        <tr><td>Supabase</td><td>Cached AI-generated content, keyed by plant/zone rather than personal identity. A random anonymous user ID created for each installation (no name, email, or account), used to accept the App's requests and to count each installation's daily use of features such as AI content, plant identification, and weather, so usage limits can be enforced. Cancellation-survey responses you choose to submit, stored with your anonymous RevenueCat subscriber ID, how long you have subscribed, and how long the App has been installed. Supabase also relays the App's requests to the AI, plant-identification, botanical-data, and weather services above without storing their content. Like other infrastructure providers, Supabase may log IP addresses and user-agent information for security and operation. Acts as our data processor.</td><td>Backend hosting, caching to reduce redundant AI calls, enforcing usage limits, and storing cancellation-survey responses</td></tr>
         <tr><td>RevenueCat</td><td>Purchase history and subscription entitlement data; acts as our data processor.</td><td>Subscription management and purchase verification</td></tr>
-        <tr><td>Sentry (Functional Software, Inc.)</td><td>Crash reports and diagnostic data: device model, operating-system version, app version, and error / stack-trace information.</td><td>Diagnosing crashes and improving app stability</td></tr>
+        <tr><td>Sentry (Functional Software, Inc.)</td><td>Crash reports and diagnostic data: device model, operating-system version, app version, and error / stack-trace information, plus a random installation ID generated on your device (not linked to your name or contact information). Reports do not include addresses you enter or your location coordinates.</td><td>Diagnosing crashes and improving app stability</td></tr>
         <tr><td>Apple (StoreKit / TestFlight / App Store Connect)</td><td>Purchase transactions, device diagnostics, and (during beta testing) the email address associated with your Apple ID.</td><td>Payment processing, beta distribution, and app distribution</td></tr>
         <tr><td>Google (Google Play &amp; Google Play Billing)</td><td>Subscription purchase and management data; device diagnostics and crash logs during testing.</td><td>Processing Android subscriptions, crash diagnostics, and app distribution</td></tr>
       </tbody>
@@ -158,7 +159,7 @@
     <p>Most of your plant catalog and property data is stored <strong>locally on your device</strong>. AI-generated care content may additionally be cached on our Supabase backend to reduce redundant API calls. API keys and credentials used by the App are secured server-side/in encrypted environment variables and are never exposed in the App itself. While we take reasonable precautions, no method of electronic storage or transmission is 100% secure, and we cannot guarantee absolute security.</p>
 
     <h2>5. Data Retention</h2>
-    <p>Locally stored data remains on your device until you delete the App or clear its data. Cached AI-generated content on our backend is retained to serve future users requesting the same plant/zone information and is not tied to an individual account. Cancellation-survey responses are retained to help us understand and improve retention, and are associated with an anonymous subscriber identifier, not your name or contact information.</p>
+    <p>Locally stored data remains on your device until you delete the App or clear its data. Cached AI-generated content on our backend is retained to serve future users requesting the same plant/zone information and is not tied to an individual account. The anonymous user ID and daily usage counts described in Section 3 are kept on our Supabase backend so usage limits can be enforced; they are not linked to your name or contact information. Cancellation-survey responses are retained to help us understand and improve retention, and are associated with an anonymous subscriber identifier, not your name or contact information.</p>
 
     <h2>6. Your Choices</h2>
     <ul>
